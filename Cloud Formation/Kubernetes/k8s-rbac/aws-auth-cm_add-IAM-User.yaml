@@ -1,0 +1,24 @@
+# Please edit the object below. Lines beginning with a '#' will be ignored,
+# and an empty file will abort the edit. If an error occurs while saving this file will be
+# reopened with the relevant failures.
+#
+apiVersion: v1
+data:
+  mapRoles: |
+    - rolearn: arn:aws:iam::255786373758:role/eks-iam-stack-EksWorkerRole-IR5PH26TWP2Y
+      username: system:node:{{EC2PrivateDNSName}}
+      groups:
+        - system:bootstrappers
+        - system:nodes
+  mapUsers: |
+    - userarn: arn:aws:iam::255786373758:user/josh.pobiega
+      username: josh.pobiega
+      groups:
+        - system:masters
+kind: ConfigMap
+metadata:
+  name: aws-auth
+  namespace: kube-system
+  resourceVersion: "83224"
+  selfLink: /api/v1/namespaces/kube-system/configmaps/aws-auth
+  uid: b1347f91-cd58-11e9-8fb2-025fa539f0b4
